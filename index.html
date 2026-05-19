@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jugendleistungsspange – Lernwebsite</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" href="./favicon.ico" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="brand">
+          <div class="brand__badge">JF</div>
+          <div class="brand__title">
+            <h1>Lernwebsite – Deutsche Jugendleistungsspange</h1>
+            <p>Wähle Gruppen aus → beantworte Fragen → Lösung ansehen → selbst bewerten.</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="card" id="stepSelectGroups">
+          <h2>1) Wähle die Lerngruppen</h2>
+          <p class="muted">
+            Du kannst mehrere Gruppen auswählen. Danach bekommst du die Fragen in Reihenfolge der Gruppen.
+          </p>
+
+          <div class="grid" id="groupGrid" aria-label="Lerngruppen Auswahl"></div>
+
+          <div class="actions">
+            <button class="btn btn--primary" id="btnStart" type="button" disabled>Start</button>
+            <button class="btn" id="btnResetSelection" type="button" style="display:none;">Auswahl löschen</button>
+          </div>
+        </section>
+
+        <section class="card" id="stepQuiz" style="display:none;">
+          <div class="quizTop">
+            <div>
+              <div class="kicker">Frage</div>
+              <h2 id="questionTitle">—</h2>
+              <p class="muted" id="questionMeta">—</p>
+            </div>
+            <div class="progressWrap">
+              <div class="progressText" id="progressText">—</div>
+              <div class="progressBar" aria-hidden="true">
+                <div class="progressBar__fill" id="progressFill"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="questionBox">
+            <label class="label" for="answerInput">Deine Antwort</label>
+            <textarea
+              id="answerInput"
+              class="textarea"
+              rows="6"
+              placeholder="Schreibe deine Antwort auf…"
+              autocomplete="off"
+            ></textarea>
+
+            <div class="hint">
+              Tipp: Du musst nicht perfekt sein — danach siehst du die Lösung und bewertest selbst.
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn" id="btnBack" type="button" style="display:none;">Zurück</button>
+            <button class="btn btn--primary" id="btnSubmitAnswer" type="button">Lösung anzeigen</button>
+          </div>
+        </section>
+
+        <section class="card" id="stepReveal" style="display:none;">
+          <div class="quizTop">
+            <div>
+              <div class="kicker">Lösung</div>
+              <h2 id="revealTitle">—</h2>
+              <p class="muted" id="revealMeta">—</p>
+            </div>
+            <div class="progressWrap">
+              <div class="progressText" id="progressText2">—</div>
+              <div class="progressBar" aria-hidden="true">
+                <div class="progressBar__fill" id="progressFill2"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="revealGrid">
+            <div class="box">
+              <h3 class="box__title">Deine Antwort</h3>
+              <div class="box__content" id="yourAnswerBox">—</div>
+            </div>
+            <div class="box box--solution">
+              <h3 class="box__title">Musterlösung</h3>
+              <div class="box__content" id="solutionBox">—</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="rating">
+            <p class="muted">
+              War deine Antwort richtig?
+            </p>
+            <div class="actions">
+              <button class="btn btn--good" id="btnMarkCorrect" type="button">✅ Richtig</button>
+              <button class="btn btn--bad" id="btnMarkWrong" type="button">❌ Falsch</button>
+              <button class="btn btn--primary" id="btnNextAfterRating" type="button" disabled>Weiter</button>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn" id="btnBackToEdit" type="button">Zurück zur Eingabe</button>
+          </div>
+        </section>
+
+        <section class="card" id="stepSummary" style="display:none;">
+          <h2>Ergebnis</h2>
+          <p class="muted">Hier ist deine Übersicht.</p>
+
+          <div class="summaryStats" id="summaryStats"></div>
+
+          <div class="divider"></div>
+
+          <div class="box box--list">
+            <h3 class="box__title">Falsch beantwortet (falls vorhanden)</h3>
+            <div class="box__content">
+              <div id="wrongList" class="wrongList"></div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="actions">
+            <button class="btn btn--primary" id="btnRestart" type="button">Neustart</button>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>
+          Kostenlos nutzbar als statische Website (z.B. GitHub Pages).
+        </p>
+      </footer>
+    </div>
+
+    <script src="./questions.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
